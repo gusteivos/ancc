@@ -17,7 +17,7 @@ endif
 SRCFOLDER=./src/
 
 SRCS=$(wildcard $(SRCFOLDER)*.c)
-OBJS=$(SOURCES:.c=$(OBJ))
+OBJS=$(SRCS:.c=$(OBJ))
 LIBS=-lm
 
 $(NAME): $(OBJS)
