@@ -14,7 +14,9 @@ else
 	RM=rm -f -v
 endif
 
-SRCS=$(wildcard $(UVMFOLDER)*.c)
+SRCFOLDER=./src/
+
+SRCS=$(wildcard $(SRCFOLDER)*.c)
 OBJS=$(SOURCES:.c=$(OBJ))
 LIBS=-lm
 
