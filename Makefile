@@ -7,7 +7,7 @@ CCFLAGS=-Wall -Wextra
 ifeq ($(OS),Windows_NT)
     OBJ=.obj
     EXE=.exe
-	RM=cmd /C .\..\rm.bat -f -v
+	RM=cmd /C .\rm.bat -f -v
 else
     OBJ=.o
     EXE=.out
