@@ -2,7 +2,10 @@
 #ifndef HASHMAP_H
 #define HASHMAP_H
 
+#include "ancc.h"
+
 #include <stddef.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include "hashfunc.h"
 
@@ -13,7 +16,7 @@ typedef struct hashmap_entry_s
 
     void *key;
 
-    uint64_t hash;
+    uint32_t hash;
 
     void *value;
 
@@ -64,4 +67,4 @@ int hashmap_remove(
 
 void free_hashmap(hashmap_t *map);
 
-#endif
+#endif/*HASHMAP_H*/

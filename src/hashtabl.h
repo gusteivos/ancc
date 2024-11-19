@@ -13,15 +13,15 @@ typedef struct hashtable_entry_s
 {
 
     size_t key_size;
-    
+
     void *key;
 
-    uint64_t hash;
+    uint32_t hash;
 
     void *value;
 
     struct hashtable_entry_s *next;
-   
+
 } hashtable_entry_t;
 
 typedef struct hashtable_s
@@ -69,4 +69,4 @@ int hashtable_remove(
 
 void free_hashtable(hashtable_t *map);
 
-#endif
+#endif/*HASHTABL_H*/
