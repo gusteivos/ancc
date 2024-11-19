@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 
     }
 
-
+    error_novarg(EXIT_FAILURE, "We haven't implemented anything yet.");
 
     return EXIT_SUCCESS;
 

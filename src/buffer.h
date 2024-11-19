@@ -11,18 +11,25 @@
 
 typedef struct buffer_s
 {
+
     char *items;
+
     size_t capacity;
+
     size_t count;
+
 } buffer_t;
 
 buffer_t *new_buffer(size_t capacity);
 
-int buffer_append(buffer_t *buffer, size_t, char *);
-int buffer_truncate(buffer_t *buffer, size_t, char *);
+int buffer_append(buffer_t *buffer, size_t count, char *items);
+
+int buffer_truncate(buffer_t *buffer, size_t count, char *items);
+
 int buffer_push(buffer_t *buffer, char item);
+
 int buffer_pop(buffer_t *buffer, char *item);
 
 void free_buffer(buffer_t *buffer);
 
-#endif
+#endif/*BUFFER_H*/
