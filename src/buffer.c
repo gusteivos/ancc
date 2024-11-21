@@ -3,6 +3,15 @@
 buffer_t *new_buffer(size_t capacity)
 {
 
+    if (
+        capacity == 0
+        )
+    {
+
+        return NULL;
+
+    }
+
     buffer_t *buffer = (buffer_t *)malloc(sizeof(buffer_t));
 
     if (buffer == NULL)
@@ -109,6 +118,32 @@ int buffer_pop(buffer_t *buffer, char *item)
 {
 
     return buffer_truncate(buffer, sizeof(*item), item);
+
+}
+
+int buffer_peek(buffer_t *buffer, char *item)
+{
+
+    if (
+        buffer == NULL ||
+        item == NULL
+        )
+    {
+
+        return EINVAL;
+
+    }
+
+    if (buffer->count < sizeof(char))
+    {
+
+        return ERANGE;
+
+    }
+
+    *item = buffer->items[buffer->count - sizeof(char)];
+
+    return 0;
 
 }
 
