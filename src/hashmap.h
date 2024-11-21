@@ -7,6 +7,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "hashfunc.h"
 
 typedef struct hashmap_entry_s
@@ -25,17 +26,24 @@ typedef struct hashmap_entry_s
 typedef struct hashmap_s
 {
 
-    size_t entrys_size;
-
     hashmap_entry_t *entrys;
+
+    size_t capacity;
 
     Ihashfunc_t hashfunc;
 
 } hashmap_t;
 
 hashmap_t *new_hashmap(
-    size_t size,
+    size_t capacity,
     Ihashfunc_t hashfunc
+    );
+
+int hashmap_get_entry(
+    hashmap_t *map,
+    size_t key_size,
+    void *key,
+    hashmap_entry_t **entry
     );
 
 int hashmap_put(
@@ -43,12 +51,6 @@ int hashmap_put(
     size_t key_size,
     void *key,
     void *value
-    );
-
-int hashmap_exists(
-    hashmap_t *map,
-    size_t key_size,
-    void *key
     );
 
 int hashmap_get(
