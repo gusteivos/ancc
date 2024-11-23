@@ -7,6 +7,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "hashfunc.h"
 
 typedef struct hashtable_entry_s
@@ -27,17 +28,25 @@ typedef struct hashtable_entry_s
 typedef struct hashtable_s
 {
 
-    size_t entrys_size;
-
     hashtable_entry_t *entrys;
+
+    size_t capacity;
 
     Ihashfunc_t hashfunc;
 
 } hashtable_t;
 
 hashtable_t *new_hashtable(
-    size_t size,
+    size_t capacity,
     Ihashfunc_t hashfunc
+    );
+
+int hashtable_get_entry(
+    hashtable_t *table,
+    size_t key_size,
+    void *key,
+    hashtable_entry_t **previous,
+    hashtable_entry_t **entry
     );
 
 int hashtable_put(
@@ -45,12 +54,6 @@ int hashtable_put(
     size_t key_size,
     void *key,
     void *value
-    );
-
-int hashtable_exists(
-    hashtable_t *map,
-    size_t key_size,
-    void *key
     );
 
 int hashtable_get(
