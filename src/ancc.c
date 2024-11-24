@@ -17,11 +17,60 @@ void _error(
 	vfprintf(stderr, fmt, ap);
 	va_end(ap);
 
-	putc('\n', stderr);
+	fputs("\n\n", stderr);
 
 	fflush(stderr);
 
 	exit(exit_status);
+
+}
+
+int _warning_minimum_level = _WARNING_MINIMUM_LEVEL;
+
+int _warning_maximum_level = _WARNING_MAXIMUM_LEVEL;
+
+void _warning(
+    const char *file,
+    int line,
+    int level,
+    const char *fmt,
+    ...
+    )
+{
+
+    if (level < _warning_minimum_level)
+    {
+
+        return;
+
+    }
+
+    if (level > _warning_maximum_level)
+    {
+
+        fprintf(stderr, "\nError from FILE: %s on LINE: %d.\n\n", file, line);
+
+        va_list ap;
+        va_start(ap, fmt);
+        vfprintf(stderr, fmt, ap);
+        va_end(ap);
+
+        fputs("\n\n", stderr);
+
+        fflush(stderr);
+
+    	exit(EXIT_FAILURE);
+
+    }
+
+    fprintf(stdout, "\nWarning from FILE: %s on LINE: %d.\n\n", file, line);
+
+	va_list ap;
+	va_start(ap, fmt);
+	vfprintf(stdout, fmt, ap);
+	va_end(ap);
+
+	fputs("\n\n", stdout);
 
 }
 

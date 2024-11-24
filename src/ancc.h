@@ -8,9 +8,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-void error(const char *, ...);
-
-
 #ifndef ANCC_NAME
 #define ANCC_NAME "ancc"
 #endif
@@ -52,6 +49,43 @@ void _error(
     __FILE__,                                       \
     __LINE__,                                       \
     exit_status,                                    \
+    fmt,                                            \
+    ##__VA_ARGS__                                   \
+    )
+
+#ifndef _WARNING_MINIMUM_LEVEL
+#define _WARNING_MINIMUM_LEVEL 0
+#endif
+
+EXTERN
+int _warning_minimum_level;
+
+#ifndef _WARNING_MAXIMUM_LEVEL
+#define _WARNING_MAXIMUM_LEVEL 127
+#endif
+
+EXTERN
+int _warning_maximum_level;
+
+void _warning(
+    const char *file,
+    int line,
+    int level,
+    const char *fmt,
+    ...
+    );
+
+#define warning_novarg(level, fmt) _warning(        \
+    __FILE__,                                       \
+    __LINE__,                                       \
+    level,                                          \
+    fmt                                             \
+    )
+
+#define warning(level, fmt, ...) _warning(          \
+    __FILE__,                                       \
+    __LINE__,                                       \
+    level,                                          \
     fmt,                                            \
     ##__VA_ARGS__                                   \
     )
