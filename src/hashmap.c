@@ -135,22 +135,22 @@ int hashmap_get_entry(
 
         size_t entry_index = ((size_t)hash + i) % map->capacity;
 
-        hashmap_entry_t *entry_at_index = &map->entrys[entry_index];
+        hashmap_entry_t *current_entry = &map->entrys[entry_index];
 
         if (
-            entry_at_index->key_size != 0 &&
-            entry_at_index->key != NULL
+            current_entry->key_size != 0 &&
+            current_entry->key != NULL
             )
         {
 
             if (
-                entry_at_index->hash == hash &&
-                entry_at_index->key_size == key_size &&
-                memcmp(entry_at_index->key, key, entry_at_index->key_size) == 0
+                current_entry->hash == hash &&
+                current_entry->key_size == key_size &&
+                memcmp(current_entry->key, key, current_entry->key_size) == 0
                 )
             {
 
-                *entry = entry_at_index;
+                *entry = current_entry;
 
                 return 0;
 
@@ -160,7 +160,7 @@ int hashmap_get_entry(
 
     }
 
-    return EBADF;
+    return ENOENT;
 
 }
 
@@ -213,9 +213,18 @@ int hashmap_put(
         else
         {
 
-            entry_at_index->key_size = key_size;
+            entry_at_index->key = malloc(key_size);
 
-            entry_at_index->key = key;
+            if (entry_at_index->key == NULL)
+            {
+
+                return EFAULT;
+
+            }
+
+            memcpy(entry_at_index->key, key, key_size);
+
+            entry_at_index->key_size = key_size;
 
             entry_at_index->hash = hash;
 
@@ -275,9 +284,16 @@ int hashmap_remove(
 
     }
 
-    *value = entry->value;
+    if (value == NULL)
+    {
+
+        *value = entry->value;
+
+    }
 
     entry->key_size = 0;
+
+    free(entry->key);
 
     entry->key = NULL;
 
@@ -299,12 +315,23 @@ void free_hashmap(hashmap_t *map)
 
     }
 
-    if (map->entrys != NULL)
+    size_t i = 0;
+
+    for ( ; i < map->capacity; i++)
     {
 
-        free(map->entrys);
+        hashmap_entry_t *entry = &map->entrys[i];
+
+        if (entry->key != NULL)
+        {
+
+            free(entry->key);
+
+        }
 
     }
+
+    free(map->entrys);
 
     free(map);
 
