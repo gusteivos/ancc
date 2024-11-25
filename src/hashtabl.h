@@ -28,7 +28,7 @@ typedef struct hashtable_entry_s
 typedef struct hashtable_s
 {
 
-    hashtable_entry_t *entrys;
+    hashtable_entry_t **entrys;
 
     size_t capacity;
 
@@ -45,7 +45,9 @@ int hashtable_get_entry(
     hashtable_t *table,
     size_t key_size,
     void *key,
-    hashtable_entry_t **previous,
+    uint32_t *hash,
+    size_t *index,
+    hashtable_entry_t **previous_entry,
     hashtable_entry_t **entry
     );
 
