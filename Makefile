@@ -21,10 +21,10 @@ OBJS=$(SRCS:.c=$(OBJ))
 LIBS=-lm
 
 $(NAME): $(OBJS)
-	$(CC) $(CCFLAGS) $(LIBS) $(OBJS) -o $(NAME)$(EXE)
+	$(CC) $(CCFLAGS) $(LIBS) $(OBJS) -o ./$(NAME)$(EXE)
 
 %$(OBJ): %.c
 	$(CC) $(CCFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(NAME)$(EXE)
+	$(RM) $(OBJS) ./$(NAME)$(EXE)
