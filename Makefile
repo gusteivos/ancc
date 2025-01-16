@@ -14,8 +14,10 @@ else
 	RM=rm -f -v
 endif
 
+INCLUDEFOLDER=./include/
 SRCFOLDER=./src/
 
+INCS=$(INCLUDEFOLDER)
 SRCS=$(wildcard $(SRCFOLDER)*.c)
 OBJS=$(SRCS:.c=$(OBJ))
 LIBS=-lm
@@ -24,7 +26,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CCFLAGS) $(LIBS) $(OBJS) -o ./$(NAME)$(EXE)
 
 %$(OBJ): %.c
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CC) $(CCFLAGS) -I$(INCS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS) ./$(NAME)$(EXE)
