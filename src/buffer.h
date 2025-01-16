@@ -19,18 +19,39 @@ typedef struct buffer_s
 
 } buffer_t;
 
-buffer_t *new_buffer(size_t capacity);
+buffer_t *new_buffer(
+    size_t capacity
+    );
 
-int buffer_append(buffer_t *buffer, size_t count, char *items);
+int buffer_append(
+    buffer_t *buffer,
+    size_t count,
+    char *items
+    );
 
-int buffer_truncate(buffer_t *buffer, size_t count, char *items);
+int buffer_truncate(
+    buffer_t *buffer,
+    size_t count,
+    char *items
+    );
 
-int buffer_push(buffer_t *buffer, char item);
+int buffer_push(
+    buffer_t *buffer,
+    char item
+    );
 
-int buffer_pop(buffer_t *buffer, char *item);
+int buffer_pop(
+    buffer_t *buffer,
+    char *item
+    );
 
-int buffer_peek(buffer_t *buffer, char *item);
+int buffer_peek(
+    buffer_t *buffer,
+    char *item
+    );
 
-void free_buffer(buffer_t *buffer);
+void free_buffer(
+    buffer_t *buffer
+    );
 
 #endif/*BUFFER_H*/

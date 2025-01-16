@@ -43,7 +43,11 @@ buffer_t *new_buffer(size_t capacity)
 int buffer_append(buffer_t *buffer, size_t count, char *items)
 {
 
-    if (buffer == NULL || count == 0 || items == NULL)
+    if (
+        buffer == NULL ||
+        count == 0 ||
+        items == NULL
+        )
     {
 
         return EINVAL;
@@ -83,7 +87,11 @@ int buffer_append(buffer_t *buffer, size_t count, char *items)
 int buffer_truncate(buffer_t *buffer, size_t count, char *items)
 {
 
-    if (buffer == NULL || count == 0 || items == NULL)
+    if (
+        buffer == NULL ||
+        count == 0 ||
+        items == NULL
+        )
     {
 
         return EINVAL;
@@ -150,7 +158,9 @@ int buffer_peek(buffer_t *buffer, char *item)
 void free_buffer(buffer_t *buffer)
 {
 
-    if (buffer == NULL)
+    if (
+        buffer == NULL
+        )
     {
 
         return;
