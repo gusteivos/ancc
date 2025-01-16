@@ -305,10 +305,14 @@ int hashmap_remove(
 
 }
 
-void free_hashmap(hashmap_t *map)
+void free_hashmap(
+    hashmap_t *map
+    )
 {
 
-    if (map == NULL)
+    if (
+        map == NULL
+        )
     {
 
         return;

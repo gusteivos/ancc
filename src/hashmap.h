@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <errno.h>
+
 #include "hashfunc.h"
 
 typedef struct hashmap_entry_s
@@ -67,6 +68,8 @@ int hashmap_remove(
     void **value
     );
 
-void free_hashmap(hashmap_t *map);
+void free_hashmap(
+    hashmap_t *map
+    );
 
 #endif/*HASHMAP_H*/
