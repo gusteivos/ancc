@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <errno.h>
+
 #include "hashfunc.h"
 
 typedef struct hashtable_entry_s
@@ -72,6 +73,8 @@ int hashtable_remove(
     void **value
     );
 
-void free_hashtable(hashtable_t *map);
+void free_hashtable(
+    hashtable_t *map
+    );
 
 #endif/*HASHTABL_H*/

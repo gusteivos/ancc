@@ -322,7 +322,9 @@ int hashtable_remove(hashtable_t *table, size_t key_size, void *key, void **valu
 void free_hashtable(hashtable_t *table)
 {
 
-    if (table == NULL)
+    if (
+        table == NULL
+        )
     {
 
         return;
