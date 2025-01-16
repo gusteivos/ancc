@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdbool.h>
 
 #ifndef ANCC_NAME
 #define ANCC_NAME "ancc"
@@ -15,11 +16,20 @@
 #ifndef EXTERN
 #define EXTERN extern
 #endif
+#ifndef INLINE
+#define INLINE inline
+#endif
+#ifndef REGISTER
+#define REGISTER register
+#endif
+#ifndef RESTRICT
+#define RESTRICT restrict
+#endif
 #ifndef STATIC
 #define STATIC static
 #endif
-#ifndef INLINE
-#define INLINE inline
+#ifndef VOLATILE
+#define VOLATILE volatile
 #endif
 
 #ifndef NOTRET
@@ -28,6 +38,9 @@
 #ifndef UNUSED
 #define UNUSED(x) x
 #endif
+
+#define ANCC_STDC89 89
+#define ANCC_STDC99 99
 
 NOTRET
 void _error(
@@ -90,6 +103,10 @@ void _warning(
     ##__VA_ARGS__                                   \
     )
 
-void *guarantees_realloc(void *ptr, size_t old_size, size_t new_size);
+void *guarantees_realloc(
+	void *ptr,
+	size_t old_size,
+	size_t new_size
+	);
 
 #endif/*ANCC_H*/

@@ -74,7 +74,11 @@ void _warning(
 
 }
 
-void *guarantees_realloc(void *ptr, size_t old_size, size_t new_size)
+void *guarantees_realloc(
+    void *ptr,
+    size_t old_size,
+    size_t new_size
+    )
 {
 
     if (new_size == 0)
