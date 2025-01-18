@@ -109,4 +109,6 @@ void *guarantees_realloc(
 	size_t new_size
 	);
 
+char *duplicate_string(const char *str);
+
 #endif/*ANCC_H*/
