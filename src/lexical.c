@@ -420,7 +420,7 @@ int is_symbol_char(int c)
         !(c >= '0' && c <= '9') &&
         !(c >= '@' && c <= 'Z') &&
         !(c >= '`' && c <= 'z') &&
-        is_ascii_char(c)
+         (c >= ' ' && c <= '~')
     );
 }
 
